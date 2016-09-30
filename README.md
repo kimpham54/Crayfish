@@ -1,3 +1,5 @@
+# version 8.1.0
+
 # ![Crayfish](https://cloud.githubusercontent.com/assets/2371345/15409657/2dfb463a-1dec-11e6-9089-06df94ef3f37.png) Crayfish
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/Islandora/crayfish.svg?style=flat-square)](https://packagist.org/packages/islandora/crayfish)
@@ -24,7 +26,7 @@ PCDM specific services are available with [PDX](https://github.com/Islandora-CLA
 
 You will need to copy the configuration file [_example.settings.yml_](config/example.settings.yml) to either **settings.yml** or **settings.dev.yml** (if $app['debug'] = TRUE) and change any required settings.
 
-You can run just this service using PHP by executing 
+You can run just this service using PHP by executing
 
 ```
 php -S localhost:<some port> -t src/ src/index.php
@@ -33,7 +35,7 @@ from this directory to start it running.
 
 ## Services
 
-This mounts all the various individual microservices under the `/islandora` URL, so you currently have access to 
+This mounts all the various individual microservices under the `/islandora` URL, so you currently have access to
 
 * ResourceService at `/islandora/resource`
 * TransactionService at `/islandora/transaction`
@@ -52,14 +54,14 @@ and pass the request to Chullo.
 
 #### Services
 
-The ResourceService provides the following endpoints for HTTP requests. 
+The ResourceService provides the following endpoints for HTTP requests.
 
 **Note**: The UUID is of the form `18c67794-366c-a6d9-af13-b3464a1fb9b5`
 
 1. GET from `/resource/{uuid}/{child}`
 
     for getting the Fedora Resource from either {uuid} (if {child} is left off), or {child} if both are provided.
-    
+
 
 1. POST to `/resource`
 
@@ -76,7 +78,7 @@ The ResourceService provides the following endpoints for HTTP requests.
 1. PATCH to `/resource/{uuid}/{child}`
 
     for patching a resource at either {uuid} (if {child} is left off), or {child} if both are provided.
-    
+
 2. DELETE to `/resource/{uuid}/{child}`
 
     for deleting a resource at either {uuid} (if {child} is left off), or {child} if both are provided.
@@ -87,22 +89,22 @@ This an Islandora PHP Microservice to create/extend/commit or rollback Fedora 4 
 
 #### Services
 
-The TransactionService provides the following endpoints for HTTP requests. 
+The TransactionService provides the following endpoints for HTTP requests.
 
 **Note**: The transaction ID (or txID) is of the form `tx:83e34464-144e-43d9-af13-b3464a1fb9b5`
 
 1. POST to `/transaction`
 
     for creating a new transaction. It returns the transaction ID in the Location: header. It can be retrieved by passing the Response to the `getId()` function.
-    
+
 2. POST to `/transaction/{txID}/extend`
 
     for extending a transaction. Normally a transaction will expire once it has sat for approximately 3 minutes without any interactions. This allows you to extend the transaction without performing any other interaction.
-    
+
 3. POST to `/transaction/{txID}/commit`
 
     to commit the transaction.
-    
+
 4. POST to `/transaction/{txID}/rollback`
 
     to rollback a transaction
